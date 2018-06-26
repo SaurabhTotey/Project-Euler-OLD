@@ -2,6 +2,8 @@ namespace Common
 
 //A collection of what a number generator is as well as useful number generators
 module NumberGenerator =
+    open System
+    
     (*
      * A utility type that generates and stores a sequence of numbers
      *)
@@ -21,7 +23,17 @@ module NumberGenerator =
         //A convenience method that will get the number at the given index
         member this.getNumberAt (index : int) = this.numbers.[index]
     
+    //Number Generator for the Fibonacci Sequence
     let fibonacciSequence =
         new NumberGenerator(ResizeArray [ 1; 2 ], 
                             fun (currentSeq : ResizeArray<int>) -> 
                                 currentSeq.[currentSeq.Count - 1] + currentSeq.[currentSeq.Count - 2])
+    
+    //Number Generator for a sequence of prime numbers
+    let primeSequence =
+        new NumberGenerator(ResizeArray [ 2; 3 ], 
+                            fun (currentSeq : ResizeArray<int>) -> 
+                                (let mutable current = currentSeq.[currentSeq.Count - 1] + 2
+                                 while currentSeq.Exists(fun elem -> current % elem = 0) do
+                                     current <- current + 2
+                                 current))
