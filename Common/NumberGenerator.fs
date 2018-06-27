@@ -13,7 +13,7 @@ module NumberGenerator =
         //A method that will generate a new number given the current set of numbers
         member this.generateNumber() = this.numbers.Add(generateNumber this.numbers)
         
-        //A convenience method that will continually generate numbers until the condition given has been met
+        //A convenience method that will continually generate numbers while the condition given is being met
         member this.generateNumbersWhile (predicate : ResizeArray<int> -> bool) =
             while predicate (this.numbers) do
                 this.generateNumber() |> ignore
