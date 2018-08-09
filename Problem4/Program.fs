@@ -1,10 +1,11 @@
-﻿namespace Problem4
+﻿module Program
 
-//Solution for Problem 4 on Project Euler
-module Problem4 =
-    open System
-    
-    //Returns whether the given number is a palindrome or not
+open System
+
+exception BreakException
+
+[<EntryPoint>]
+let main argv =
     let isPalindrome (number : int) =
         let str =
             string (number)
@@ -12,13 +13,7 @@ module Problem4 =
             |> Seq.toList
         str = (str |> List.rev)
     
-    //The current palindrome
     let mutable palindrome = 0
-    
-    //A custom exception to implement breaking in for loops
-    exception BreakException
-    
-    //Iterates through all 3 digit numbers to see if they are a larger palindrome than what is currently stored
     for i in seq { 999..-1..1 } do
         try 
             for j in seq { 999..-1..1 } do
@@ -29,3 +24,4 @@ module Problem4 =
                    && multiple > palindrome then palindrome <- multiple
         with BreakException -> ()
     printf "%i" palindrome
+    0

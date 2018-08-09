@@ -1,12 +1,10 @@
-﻿namespace Problem8
+﻿module Program
 
-//Solution for Problem 8 on Project Euler
-module Problem8 =
-    open System
-    
-    //The product is found for numDigitsToMultiply adjacent digits
+open System
+
+[<EntryPoint>]
+let main argv =
     let numDigitsToMultiply = 13
-    //A string of the number with all the digits to find which 13 consecutive digits have the largest product
     let longNum =
         "73167176531330624919225119674426574742355349194934
                    96983520312774506326239578318016984801869478851843
@@ -30,9 +28,7 @@ module Problem8 =
                    71636269561882670428252483600823257530420752963450" 
         |> String.filter (fun letter -> letter |> Char.IsDigit)
     
-    //A function that gets the largest multiple of numDigitsToMultiply adjacent digits
     let getLargestAdjacentMultiple() =
-        //A recursive function that finds a multiple at an index: if it is larger than what has been found, it will go to the next index with the largest multiple
         let rec getMultipleAt (index : int, largestMultiple : int64) =
             if index + numDigitsToMultiply > longNum.Length then largestMultiple
             else 
@@ -46,5 +42,5 @@ module Problem8 =
                                if multiple > largestMultiple then multiple
                                else largestMultiple)
         getMultipleAt (0, 0L)
-    
     printf "%i" (getLargestAdjacentMultiple())
+    0

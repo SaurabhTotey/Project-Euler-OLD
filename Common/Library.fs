@@ -18,10 +18,12 @@ module NumberGenerator =
         
         //A getter for all the currently generated numbers
         member this.getGeneratedNumbers() = this.numbers.ToArray()
+        
         //A convenience method that will get the number at the given index
-        member this.getNumberAt (index : int) = 
-            this.generateNumbersWhile(fun currentSeq -> currentSeq.Count - 1 < index)
+        member this.getNumberAt (index : int) =
+            this.generateNumbersWhile (fun currentSeq -> currentSeq.Count - 1 < index)
             this.numbers.[index]
+        
         //A convenience method that gets the most recently generated number
         member this.getCurrentNumber() = this.numbers.[this.numbers.Count - 1]
         //A convenience method that gets the amount of generated numbers
