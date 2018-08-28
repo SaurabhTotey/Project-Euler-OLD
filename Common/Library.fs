@@ -49,3 +49,11 @@ module NumberGenerator =
         new NumberGenerator(ResizeArray [ 1 ], 
                             fun (currentSeq : ResizeArray<int>) -> 
                                 currentSeq.[currentSeq.Count - 1] + currentSeq.Count + 1)
+    
+    //Function that returns a Number Generator for a Collatz sequence for the given number
+    let collatzSequenceFor (starting : int) =
+        new NumberGenerator(ResizeArray [ starting ], 
+                            fun (currentSeq : ResizeArray<int>) -> 
+                                let currentNum = currentSeq.[currentSeq.Count - 1]
+                                if currentNum % 2 = 0 then currentNum / 2
+                                else currentNum * 3 + 1)
